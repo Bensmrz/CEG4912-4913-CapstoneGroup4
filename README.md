@@ -33,7 +33,7 @@ To perform real-time prediction of hand gestures using the trained model, follow
   - Run the inference_classifier.py script.
   - The webcam feed will start, and the predicted hand gesture will be displayed in real-time.
 
-<br />
+
 **Dependencies**<br />
 Make sure you have the following dependencies installed before running the code:<br />
 
