@@ -20,7 +20,7 @@ while True:
     x_ = []
     y_ = []
 
-    ret, frame = cap.read()
+    rect, frame = cap.read()
     H, W, _ = frame.shape
     frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
     results = hands.process(frame_rgb)
