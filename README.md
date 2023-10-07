@@ -24,7 +24,7 @@ To create the data set, follow these steps:
   - Run the create_dataset.py script.
   - A new pickle file will appear in the same directory named data.pickle.
 
-4. Train the Model
+3. Train the Model
 After collecting the training data, you can train the model using the train_classifier.py script. Here's how to do it:
   - Run the train_classifier.py script to train the model classifier.
   - The trained model will be saved as model.p.
