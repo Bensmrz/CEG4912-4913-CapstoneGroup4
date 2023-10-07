@@ -1,9 +1,8 @@
 # CEG4912-4913-CapstoneGroup4
 
 This project demonstrates object detection using MediaPipe Hands for recognizing hand gestures and mapping them to predefined labels (A, B, C, etc.).
-This README provides an overview of the project structure and instructions on how to use each file for training and real-time prediction.
 
-Project Structure
+**Project Structure**
 The project consists of the following files and directories:
 
 collect_imgs.py: This script is used for collecting and storing training data.
