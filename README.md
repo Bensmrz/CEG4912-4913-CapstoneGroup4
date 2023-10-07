@@ -6,8 +6,11 @@ This project demonstrates object detection using MediaPipe Hands for recognizing
 The project consists of the following files and directories:
 
 collect_imgs.py: This script is used for collecting and storing training data.
+
 create_dataset.py: This script is used to create a dataset using the collected images.
+
 train_classifier.py: This script is used to train the model on hand gesture data.
+
 inference_classifier.py: This script captures real-time video feed from the webcam and predicts hand gestures using the trained model.
 
 **How to Use**
