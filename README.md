@@ -2,15 +2,12 @@
 
 This project demonstrates object detection using MediaPipe Hands for recognizing hand gestures and mapping them to predefined labels (A, B, C, etc.).
 
-**Project Structure**  
-The project consists of the following files and directories:
+**Project Structure** <br />
+The project consists of the following files and directories: <br />
 
-collect_imgs.py: This script is used for collecting and storing training data.
-
-create_dataset.py: This script is used to create a dataset using the collected images.
-
-train_classifier.py: This script is used to train the model on hand gesture data.
-
+collect_imgs.py: This script is used for collecting and storing training data. <br />
+create_dataset.py: This script is used to create a dataset using the collected images. <br />
+train_classifier.py: This script is used to train the model on hand gesture data. <br />
 inference_classifier.py: This script captures real-time video feed from the webcam and predicts hand gestures using the trained model.
 
 **How to Use**
@@ -36,15 +33,16 @@ To perform real-time prediction of hand gestures using the trained model, follow
   - Run the inference_classifier.py script.
   - The webcam feed will start, and the predicted hand gesture will be displayed in real-time.
 
-**Dependencies**
-Make sure you have the following dependencies installed before running the code:
+<br />
+**Dependencies**<br />
+Make sure you have the following dependencies installed before running the code:<br />
 
-Python 3.x
-OpenCV
-MediaPipe
-NumPy
-Scikit-Learn
-Matplotlib (for data visualization)
+Python 3.x <br />
+OpenCV <br />
+MediaPipe <br />
+NumPy <br />
+Scikit-Learn <br />
+Matplotlib (for data visualization) <br />
 
-**You can install these dependencies using pip:**
+**You can install these dependencies using pip:** <br />
 pip install opencv-python mediapipe numpy scikit-learn matplotlib
