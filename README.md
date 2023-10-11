@@ -42,7 +42,6 @@ OpenCV <br />
 MediaPipe <br />
 NumPy <br />
 Scikit-Learn <br />
-Matplotlib (for data visualization) <br />
 
 **You can install these dependencies using pip:** <br />
 pip install opencv-python mediapipe numpy scikit-learn matplotlib
