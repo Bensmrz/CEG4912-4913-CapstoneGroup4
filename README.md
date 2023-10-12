@@ -35,7 +35,7 @@ To perform real-time prediction of hand gestures using the trained model, follow
 
 
 **Dependencies**<br />
-Make sure you have the following dependencies installed before running the code:<br />
+Make sure you have the following dependencies installed before running the code: <br />
 
 Python 3.x <br />
 OpenCV <br />
