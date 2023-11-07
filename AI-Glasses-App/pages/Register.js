@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
+import PrimaryButton from '../assets/components/PrimaryButton';
 
 export default function Register() {
   const [name, setName] = useState('');
