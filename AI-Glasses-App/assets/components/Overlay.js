@@ -35,6 +35,7 @@ return (
             iconStyle={{ marginRight: 10 }}
           />
         }
+        buttonStyle={styles.innerButton}
         title="iPhone"
         onPress={toggleOverlay}
       />
@@ -44,10 +45,12 @@ return (
             name="wrench"
             type="font-awesome"
             color="white"
+            style={styles.item}
             size={25}
             iconStyle={{ marginVertical: 10 }}
           />
         }
+        buttonStyle={styles.innerButton}
         title="Speakers"
         onPress={toggleOverlay}
       />
@@ -61,6 +64,7 @@ return (
             iconStyle={{ marginRight: 10 }}
           />
         }
+        buttonStyle={styles.innerButton}
         title="Microphone"
         onPress={toggleOverlay}
       />
@@ -71,7 +75,7 @@ return (
 
 const styles = StyleSheet.create({
 button:{
-  margin: 50,
+  margin: 50
 },
 textPrimary: {
   marginVertical: 20,
@@ -83,6 +87,9 @@ textSecondary: {
   textAlign: 'center',
   fontSize: 17,
 },
+innerButton: {
+  margin: 5
+}
 });
 
 

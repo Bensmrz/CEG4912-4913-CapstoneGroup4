@@ -9,11 +9,11 @@ export default function App() {
   const [password, setPassword] = useState('');
 
   const handleLogin = () => {
-    if (username === 'username' && password === 'password') {
-      console.log('Login successful');
-    } else {
-      console.log('Login failed');
-    }
+    // if (username === 'username' && password === 'password') {
+    //   console.log('Login successful');
+    // } else {
+    //   console.log('Login failed');
+    // }
   };
 
   return (

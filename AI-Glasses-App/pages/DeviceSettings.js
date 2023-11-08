@@ -1,13 +1,12 @@
 import { StatusBar } from 'expo-status-bar'
 import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Text, Button} from 'react-native';
-import Navbar from "./../assets/components/Navbar";
 import { ListItem, ButtonGroup, Header } from '@rneui/themed';
 import Overlay from "./../assets/components/Overlay";
 
 function DeviceSettings(){
   return(
-    <>
+    <View>
       <Header
       backgroundImageStyle={{}}
       barStyle="default"
@@ -29,20 +28,19 @@ function DeviceSettings(){
       <Button
         title="Enable Conversation Log"
         onPress={() => console.log("Enable Conversation log Pressed!")}
+        buttonStyle={styles.innerButton}
       />
       <Button
         title="Language Conversion:"
         onPress={() => console.log("Language Conversion Pressed!")}
+        buttonStyle={styles.innerButton}
       />
-    </> 
+    </View> 
   )
 }
 const styles = StyleSheet.create({
-  button: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+  innerButton: {
+    margin: 5
   },
 });
 export default DeviceSettings
