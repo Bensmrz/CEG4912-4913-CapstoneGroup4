@@ -1,42 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
-import { StyleSheet, View, TextInput, Text } from 'react-native';
-import CreateAccountButton from './assets/components/CreateAccountButton';
+import { StyleSheet, View } from 'react-native';
 import PrimaryButton from './assets/components/PrimaryButton'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import Login from './pages/LoginScreen';
+import Chat from './assets/components/Chat';
+import Register from './pages/Register';
+import SettingsScreen from './pages/SettingsScreen';
+import LoadingScreen from './pages/LoadingScreen';
 
 export default function App() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleLogin = () => {
-    if (username === 'username' && password === 'password') {
-      console.log('Login successful');
-    } else {
-      console.log('Login failed');
-    }
-  };
+  const Stack = createNativeStackNavigator();
+  const Tab = createBottomTabNavigator();
 
   return (
     <View style={styles.container}>
-      <Text>Login</Text>
-      <TextInput
-        style={styles.input}
-        placeholder="Username"
-        onChangeText={text => setUsername(text)}
-        value={username}
-      />
-      <TextInput
-        style={styles.input}
-        placeholder="Password"
-        secureTextEntry
-        onChangeText={text => setPassword(text)}
-        value={password}
-      />
-      <View style={styles.signupContainer}>
-        <PrimaryButton text="Login" onPress={handleLogin} />
-        <CreateAccountButton text="Create Account" onPress={handleLogin}/>
-      </View>
-      <StatusBar style="auto" />
+        <Stack.Navigator>
+          <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
+          <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Chat" component={Chat} />
+          <Stack.Screen name="Register" component={Register} />
+        </Stack.Navigator>
     </View>
   );
 }
@@ -64,7 +48,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'gray',
     marginBottom: 10,
-    padding: 10,
+    padding: 10
   },
   signupContainer: {
     marginTop: 5,

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, Switch, TextInput, Button } from 'react-native';
 
-function SettingsScreen() {
+function SettingsScreen({ navigation }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('English');
   const [currentPassword, setCurrentPassword] = useState('');
@@ -46,7 +46,6 @@ function SettingsScreen() {
   onPress={() => {
     
     if (currentPassword === '' || newPassword === '') {
-      /
       console.log('Please fill in both current and new passwords.');
     } else {
       

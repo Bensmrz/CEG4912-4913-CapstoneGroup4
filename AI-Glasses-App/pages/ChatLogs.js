@@ -2,7 +2,7 @@ import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import Chat from '../assets/components/Chat';
 
-const ChatLogs = () => {
+export default function ChatLogs({ navigation }) {
   return (
     <View style={styles.container}>
       <Chat />
@@ -15,5 +15,3 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
-
-export default ChatLogs;
