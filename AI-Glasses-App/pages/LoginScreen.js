@@ -3,13 +3,10 @@ import React, { useState } from 'react';
 import { StyleSheet, View, TextInput, Text } from 'react-native';
 import CreateAccountButton from './../assets/components/CreateAccountButton';
 import PrimaryButton from './../assets/components/PrimaryButton'
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function Login({ navigation }) {
+function LoginScreen({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
-  const Stack = createNativeStackNavigator();
 
   const handleLogin = () => {
     if (username === 'username' && password === 'password') {
@@ -76,3 +73,5 @@ const styles = StyleSheet.create({
     display: 'flex'
   },
 });
+
+export default LoginScreen;

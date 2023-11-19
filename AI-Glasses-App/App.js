@@ -2,25 +2,13 @@ import { StyleSheet, View } from 'react-native';
 import PrimaryButton from './assets/components/PrimaryButton'
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Login from './pages/LoginScreen';
-import Chat from './assets/components/Chat';
-import Register from './pages/Register';
-import SettingsScreen from './pages/SettingsScreen';
-import LoadingScreen from './pages/LoadingScreen';
+import AppNavigator from './assets/components/AppNavigator'
 
 export default function App() {
-  const Stack = createNativeStackNavigator();
-  const Tab = createBottomTabNavigator();
 
   return (
     <View style={styles.container}>
-        <Stack.Navigator>
-          <Stack.Screen name="LoadingScreen" component={LoadingScreen} />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Chat" component={Chat} />
-          <Stack.Screen name="Register" component={Register} />
-        </Stack.Navigator>
+        <AppNavigator />
     </View>
   );
 }

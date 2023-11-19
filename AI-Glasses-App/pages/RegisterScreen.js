@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import PrimaryButton from '../assets/components/PrimaryButton';
 
-export default function Register({ navigation }) {
+function RegisterScreen({ navigation }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -59,3 +59,5 @@ const styles = StyleSheet.create({
     padding: 10,
   },
 });
+
+export default RegisterScreen;
