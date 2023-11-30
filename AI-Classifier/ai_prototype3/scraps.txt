@@ -1,0 +1,7 @@
+for i in range(no_images):
+                rect, frame = cap.read()
+                cv2.putText(frame, f"Taking pictures of {keyword}: {counter}/{no_images}", (100, 50), cv2.FONT_HERSHEY_COMPLEX_SMALL, 1.3, (0, 255, 0), 3, cv2.LINE_AA)
+                cv2.imshow('frame', frame)
+                cv2.waitKey(500)
+                cv2.imwrite(os.path.join(IMG_DIR, keyword, '{}.jpg'.format(counter)), frame)
+                counter += 1

@@ -32,6 +32,7 @@ for action in vars.actions:
 
 # print("labels: ", labels)
 X = np.array(sequences)
+
 #print("X: ", X.shape)
 y = to_categorical(labels).astype(int)
 #print(y)
