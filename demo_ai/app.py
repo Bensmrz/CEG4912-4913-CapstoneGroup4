@@ -73,11 +73,11 @@ def main():
     # Initialize OLED ###########################################################
     disp = OLED_1in51.OLED_1in51()
 
-    logging.info("\r1.51inch OLED ")
+    #logging.info("\r1.51inch OLED ")
     # Initialize library.
     disp.Init()
     # Clear display.
-    logging.info("clear display")
+    #logging.info("clear display")
     disp.clear()
     
     # Create blank image for drawing.
@@ -128,8 +128,9 @@ def main():
     mode = 0
 
     while True:
-        #fps = cvFpsCalc.get()
-        
+        fps = cvFpsCalc.get()
+        print(fps)
+
         # Create blank image for drawing.
         image1 = Image.new('1', (disp.width, disp.height), "WHITE")
         draw = ImageDraw.Draw(image1)
@@ -164,18 +165,18 @@ def main():
             for hand_landmarks, handedness in zip(results.multi_hand_landmarks,
                                                   results.multi_handedness):
                 # Bounding box calculation
-                brect = calc_bounding_rect(debug_image, hand_landmarks)
+                # brect = calc_bounding_rect(debug_image, hand_landmarks)
                 # Landmark calculation
                 landmark_list = calc_landmark_list(debug_image, hand_landmarks)
 
                 # Conversion to relative coordinates / normalized coordinates
                 pre_processed_landmark_list = pre_process_landmark(
                     landmark_list)
-                pre_processed_point_history_list = pre_process_point_history(
-                    debug_image, point_history)
+                #pre_processed_point_history_list = pre_process_point_history(
+                #    debug_image, point_history)
                 # Write to the dataset file
-                logging_csv(number, mode, pre_processed_landmark_list,
-                            pre_processed_point_history_list)
+                #logging_csv(number, mode, pre_processed_landmark_list,
+                #            pre_processed_point_history_list)
 
                 # Hand sign classification
                 # OVER HERE LOOK AT ME
@@ -186,16 +187,16 @@ def main():
                     point_history.append([0, 0])
 
                 # Finger gesture classification
-                finger_gesture_id = 0
-                point_history_len = len(pre_processed_point_history_list)
-                if point_history_len == (history_length * 2):
-                    finger_gesture_id = point_history_classifier(
-                        pre_processed_point_history_list)
+                #finger_gesture_id = 0
+                #point_history_len = len(pre_processed_point_history_list)
+                #if point_history_len == (history_length * 2):
+                #    finger_gesture_id = point_history_classifier(
+                #        pre_processed_point_history_list)
 
                 # Calculates the gesture IDs in the latest detection
-                finger_gesture_history.append(finger_gesture_id)
-                most_common_fg_id = Counter(
-                    finger_gesture_history).most_common()
+                #finger_gesture_history.append(finger_gesture_id)
+                #most_common_fg_id = Counter(
+                #    finger_gesture_history).most_common()
 
                 # Drawing part
                 # debug_image = draw_bounding_rect(use_brect, debug_image, brect)
@@ -215,9 +216,8 @@ def main():
                 draw.text((20, 0), letter_val, font=font1, fill=0)
 
                 # Rotate and display the image.
-                image1 = image1.rotate(180)
                 disp.ShowImage(disp.getbuffer(image1))
-                time.sleep(1)
+                #time.sleep(1)
         else:
             point_history.append([0, 0])
 
