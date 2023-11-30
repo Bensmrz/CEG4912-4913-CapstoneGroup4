@@ -15,7 +15,6 @@ from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
 
-
 def get_args():
     parser = argparse.ArgumentParser()
 
@@ -142,6 +141,10 @@ def main():
                 # Hand sign classification
                 # OVER HERE LOOK AT ME
                 hand_sign_id = keypoint_classifier(pre_processed_landmark_list)
+
+
+
+
                 if hand_sign_id == 2:  # Point gesture
                     point_history.append(landmark_list[8])
                 else:
