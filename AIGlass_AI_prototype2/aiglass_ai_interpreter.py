@@ -32,12 +32,13 @@ def prob_viz(res, actions, input_frame, colors):
 # 1. New detection variables
 sequence = []
 sentence = []
+word = [" "]
 predictions = []
 threshold = 0.5
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(2)
 # Set mediapipe model 
-with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
+with vars.mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=0.5) as holistic:
     while cap.isOpened():
 
         # Read feed
@@ -45,7 +46,7 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
 
         # Make detections
         image, results = mediapipe_detection(frame, holistic)
-        print(results)
+        #print(results)
         
         # Draw landmarks
         draw_styled_landmarks(image, results)
@@ -67,18 +68,21 @@ with mp_holistic.Holistic(min_detection_confidence=0.5, min_tracking_confidence=
                     
                     if len(sentence) > 0: 
                         if vars.actions[np.argmax(res)] != sentence[-1]:
+                            word[0] = vars.actions[np.argmax(res)]
                             sentence.append(vars.actions[np.argmax(res)])
                     else:
+                        word[0] = vars.actions[np.argmax(res)]
                         sentence.append(vars.actions[np.argmax(res)])
 
             if len(sentence) > 5: 
                 sentence = sentence[-5:]
 
             # Viz probabilities
-            image = prob_viz(res, vars.actions, image, colors)
+            #image = prob_viz(res, vars.actions, image, colors)
             
         cv2.rectangle(image, (0,0), (640, 40), (245, 117, 16), -1)
-        cv2.putText(image, ' '.join(sentence), (3,30), 
+        #cv2.putText(image, ' '.join(sentence), (3,30),
+        cv2.putText(image, ' '.join(word), (3,30), 
                        cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
         
         # Show to screen
