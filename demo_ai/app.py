@@ -1,11 +1,25 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+import os
+import sys
+picdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'pic')
+libdir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'lib')
+
+if os.path.exists(libdir):
+    sys.path.append(libdir)
+    
 import csv
 import copy
 import argparse
 import itertools
+import logging
+import time
+import traceback
 from collections import Counter
 from collections import deque
+from waveshare_OLED import OLED_1in51
+from PIL import Image, ImageDraw, ImageFont
+logging.basicConfig(level=logging.DEBUG)
 
 import cv2 as cv
 import numpy as np
@@ -14,7 +28,6 @@ import mediapipe as mp
 from utils import CvFpsCalc
 from model import KeyPointClassifier
 from model import PointHistoryClassifier
-
 
 def get_args():
     parser = argparse.ArgumentParser()
@@ -56,6 +69,22 @@ def main():
     cap = cv.VideoCapture(cap_device)
     cap.set(cv.CAP_PROP_FRAME_WIDTH, cap_width)
     cap.set(cv.CAP_PROP_FRAME_HEIGHT, cap_height)
+    
+    # Initialize OLED ###########################################################
+    disp = OLED_1in51.OLED_1in51()
+
+    logging.info("\r1.51inch OLED ")
+    # Initialize library.
+    disp.Init()
+    # Clear display.
+    logging.info("clear display")
+    disp.clear()
+    
+    # Create blank image for drawing.
+    image1 = Image.new('1', (disp.width, disp.height), "WHITE")
+    draw = ImageDraw.Draw(image1)
+    font1 = ImageFont.load_default()
+    font2 = ImageFont.load_default()
 
     # Model load #############################################################
     mp_hands = mp.solutions.hands
@@ -99,7 +128,16 @@ def main():
     mode = 0
 
     while True:
-        fps = cvFpsCalc.get()
+        #fps = cvFpsCalc.get()
+        
+        # Create blank image for drawing.
+        image1 = Image.new('1', (disp.width, disp.height), "WHITE")
+        draw = ImageDraw.Draw(image1)
+        font1 = ImageFont.load_default()
+        font2 = ImageFont.load_default()
+        
+        # Clear the display.
+        disp.clear()
 
         # Process Key (ESC: end) #################################################
         key = cv.waitKey(10)
@@ -111,7 +149,7 @@ def main():
         ret, image = cap.read()
         if not ret:
             break
-        image = cv.flip(image, 1)  # Mirror display
+        #image = cv.flip(image, 1)  # Mirror display
         debug_image = copy.deepcopy(image)
 
         # Detection implementation #############################################################
@@ -160,23 +198,34 @@ def main():
                     finger_gesture_history).most_common()
 
                 # Drawing part
-                debug_image = draw_bounding_rect(use_brect, debug_image, brect)
-                debug_image = draw_landmarks(debug_image, landmark_list)
-                debug_image = draw_info_text(
-                    debug_image,
-                    brect,
-                    handedness,
-                    keypoint_classifier_labels[hand_sign_id],
-                    point_history_classifier_labels[most_common_fg_id[0][0]],
-                )
+                # debug_image = draw_bounding_rect(use_brect, debug_image, brect)
+                # debug_image = draw_landmarks(debug_image, landmark_list)
+                # debug_image = draw_info_text(
+                #    debug_image,
+                #    brect,
+                #    handedness,
+                #    keypoint_classifier_labels[hand_sign_id],
+                #    point_history_classifier_labels[most_common_fg_id[0][0]],
+                #)
+                
+                letter_val = keypoint_classifier_labels[hand_sign_id]
+                print(letter_val)
+                
+                # Draw text on the OLED screen.
+                draw.text((20, 0), letter_val, font=font1, fill=0)
+
+                # Rotate and display the image.
+                image1 = image1.rotate(180)
+                disp.ShowImage(disp.getbuffer(image1))
+                time.sleep(1)
         else:
             point_history.append([0, 0])
 
-        debug_image = draw_point_history(debug_image, point_history)
-        debug_image = draw_info(debug_image, fps, mode, number)
+        # debug_image = draw_point_history(debug_image, point_history)
+        # debug_image = draw_info(debug_image, fps, mode, number)
 
         # Screen reflection #############################################################
-        cv.imshow('Hand Gesture Recognition', debug_image)
+        # cv.imshow('Hand Gesture Recognition', debug_image)
 
     cap.release()
     cv.destroyAllWindows()
