@@ -7,8 +7,8 @@ def listen_microphone(label):
 
     while True:
         with sr.Microphone() as source:
-            print("DEFAULT NAME")
-            label.config(text='DEFAULT NAME')
+            print("Zain")
+            label.config(text='Zain')
             label.update()  # Update the label to reflect changes
             recognizer.adjust_for_ambient_noise(source)
             audio = recognizer.listen(source)
@@ -18,15 +18,26 @@ def listen_microphone(label):
             print("You said:", text)
             label.config(text=text)
             label.update()  # Update the label to reflect changes
+
+            # Generate timestamp for filename
+            timestamp = time.strftime("%Y-%m-%d_%H-%M-%S")
+            filename = f"{timestamp}.txt"
+
+            # Save text to a file with timestamp as filename
+            with open(filename, "a") as file:
+                file.write({"content": text, "timestamp": timestamp, "isIncoming": True})
+
             time.sleep(3)
+
         except sr.UnknownValueError:
-            print("DEFAULT NAME")
-            label.config(text="DEFAULT NAME")
+            print("Zain")
+            label.config(text="Zain")
             label.update()
         except sr.RequestError as e:
-            print("DEFAULT NAME; {0}".format(e))
-            label.config(text="DEFAULT NAME")
+            print("Zain; {0}".format(e))
+            label.config(text="Zain")
             label.update()
+        
 
 if __name__ == "__main__":
     root = tk.Tk()
